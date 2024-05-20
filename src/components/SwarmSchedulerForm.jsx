@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SwarmSchedulerForm.css";
+import { Container, TextField, Button, Typography, Box } from "@mui/material";
 
 const SwarmSchedulerForm = () => {
   const [formData, setFormData] = useState({
@@ -28,6 +28,17 @@ const SwarmSchedulerForm = () => {
     if (!formData.startTime) newErrors.startTime = "Start time is required";
     if (!formData.endTime) newErrors.endTime = "End time is required";
 
+    // Check if startTime is before endTime
+    if (formData.startTime && formData.endTime) {
+      const startTime = new Date(formData.startTime);
+      const endTime = new Date(formData.endTime);
+
+      if (startTime >= endTime) {
+        newErrors.startTime = "Start time must be before end time";
+        newErrors.endTime = "End time must be after start time";
+      }
+    }
+
     setErrors(newErrors);
 
     return Object.keys(newErrors).length === 0;
@@ -39,73 +50,75 @@ const SwarmSchedulerForm = () => {
     if (validateForm()) {
       console.log("Form submitted:", formData);
       // Add logic to handle form submission, such as sending data to the server
-      setFormData({
-        description: "",
-        link: "",
-        startTime: "",
-        endTime: "",
-      });
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="swarm-scheduler-form">
-      <div>
-        <label>
-          Description:
-          <input
-            type="text"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </label>
-        {errors.description && (
-          <span className="error">{errors.description}</span>
-        )}
-      </div>
-
-      <div>
-        <label>
-          Link:
-          <input
-            type="url"
-            name="link"
-            value={formData.link}
-            onChange={handleChange}
-          />
-        </label>
-        {errors.link && <span className="error">{errors.link}</span>}
-      </div>
-
-      <div>
-        <label>
-          Start Time:
-          <input
-            type="datetime-local"
-            name="startTime"
-            value={formData.startTime}
-            onChange={handleChange}
-          />
-        </label>
-        {errors.startTime && <span className="error">{errors.startTime}</span>}
-      </div>
-
-      <div>
-        <label>
-          End Time:
-          <input
-            type="datetime-local"
-            name="endTime"
-            value={formData.endTime}
-            onChange={handleChange}
-          />
-        </label>
-        {errors.endTime && <span className="error">{errors.endTime}</span>}
-      </div>
-
-      <button type="submit">Schedule Swarm</button>
-    </form>
+    <Container maxWidth="sm">
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
+        <Typography variant="h6" gutterBottom>
+          Schedule a Swarm
+        </Typography>
+        <TextField
+          fullWidth
+          margin="normal"
+          label="Description"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          error={Boolean(errors.description)}
+          helperText={errors.description}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          label="Link"
+          name="link"
+          type="url"
+          value={formData.link}
+          onChange={handleChange}
+          error={Boolean(errors.link)}
+          helperText={errors.link}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          label="Start Time"
+          name="startTime"
+          type="datetime-local"
+          value={formData.startTime}
+          onChange={handleChange}
+          error={Boolean(errors.startTime)}
+          helperText={errors.startTime}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          label="End Time"
+          name="endTime"
+          type="datetime-local"
+          value={formData.endTime}
+          onChange={handleChange}
+          error={Boolean(errors.endTime)}
+          helperText={errors.endTime}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2 }}
+        >
+          Schedule Swarm
+        </Button>
+      </Box>
+    </Container>
   );
 };
 
