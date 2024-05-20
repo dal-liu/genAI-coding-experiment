@@ -1,92 +1,23 @@
-# React Vitest Template
+# Prototype with GenAI
 
-A starter template for building React apps with Vite. Includes Vitest for unit testing and
-a hefty .gitignore file.
+This is a recreated prototype of our CS394 client project built with ChatGPT 3.5.
 
-# Requirements
+## Does the code work? If not, what's broken.
 
-Node 20 or greater.
+The frontend of the code works well. The backend is not functional as it is not connected to Firebase.
 
-## Usage
+## How is the code better than what the team currently has?
 
-```
-mkdir your-app-name
-cd your-app-name
-npx degit criesbeck/react-vitest
-npm install
-```
-If the third step hangs after printing ``> cloned criesbeck/react-vitest#HEAD``, 
-just control-C to exit then run ``npm install``.
+The code has error handling and validation for the user input which the team's code does not currently have. It is also better designed than the team's code.
 
-## Test
+## How is the code worse?
 
-Verify that the initial app works. Run
+The code is not connected to Firebase, so the prototype is not completely functional. Because of this, the ability to display the swarm history is not implemented.
 
-```
-npm start
-```
+## How many tries did it take to get the code? Main struggles?
 
-and open the URL displayed.
+It took 4 tries to get the code. At first, I tried using ChatGPT to create individual components for each type of input field. It was not necessary to do this, so I simplified the prompt to let ChatGPT generate the entire form component. The second time, the generated code used raw HTML and CSS, which was a good starting point to test functionality. On the next prompt, I asked ChatGPT to use the Material UI framework instead, leading to a better design. To fix issues with form validation, I asked ChatGPT to rewrite the function to submit the form.
 
-Verify that the unit tests work with
+## Overall impression of the experience
 
-```
-npm test
-```
-
-Two tests should run and pass. 
-
-## Scripts
-
-**package.json** defines the following scripts:
-
-| Script           | Description                                         |
-| -----------------| --------------------------------------------------- |
-| npm start        | Runs the app in the development mode.               |
-| npm run dev      | Runs the app in the development mode.               |
-| npm run build    | Builds the app for production to the `dist` folder. |
-| npm run serve    | Serves the production build from the `dist` folder. |
-| npm test         | Starts a Jest-like test loop                        |
-| npm run coverage | Runs the tests, displays code coverage results      |
-
-
-## Git
-
-If everything is working, set up [your local and remote repositories](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git).
-
-## Folder Structure
-
-```
-your-app-name
-├── node_modules
-├── public
-│   ├── favicon.svg
-│   └── robots.txt
-└── src
-    ├── App.css
-    ├── App.jsx
-    ├── index.css
-    ├── index.jsx
-    └── logo.svg
-├── .gitignore
-├── index.html
-├── package.json
-├── README.md
-├── vite.config.js
-```
-
-## Credits
-
-React-Vitest built and maintained by [Chris Riesbeck](https://github.com/criesbeck).
-
-Inspired by [SafdarJamal/vite-template-react](https://github.com/SafdarJamal/vite-template-react).
-Expanded to include Vitest and some sample tests.
-
-Thanks to Rich Harris for [degit](https://www.npmjs.com/package/degit).
-
-Gitignore file created with [the Toptal tool](https://www.toptal.com/developers/gitignore/api/react,firebase,visualstudiocode,macos,windows).
-
-
-## License
-
-This project is licensed under the terms of the [MIT license](./LICENSE).
+I had a good impression of the experience. Using generative AI took far less time than coding the form from scratch. It was also interesting to see what design patterns ChatGPT used to generate the code after telling it to code like an experience React developer.
