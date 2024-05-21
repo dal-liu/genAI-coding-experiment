@@ -2,6 +2,9 @@
 
 This is a recreated prototype of our CS394 client project built with ChatGPT 3.5.
 
+## Briefly describe what the code is supposed to do.
+The code creates a form for the user to input data to create and schedule a swarm. The form includes text fields for the swarm title and description that lets the user's teammates know what the swarm is about. It also includes date fields to schedule the start and end times of the swarm. When the user submits the form, a message is displayed to let the user know that a swarm has successfully been created. If the user inputs invalid data, error messages on the incorrect fields are displayed.
+
 ## Does the code work? If not, what's broken.
 
 The frontend of the code works well. The backend is not functional as it is not connected to Firebase.

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, TextField, Button, Typography, Box } from "@mui/material";
+import Notification from "./Notification"; // Import the Notification component
 
 const SwarmSchedulerForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const SwarmSchedulerForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [notificationOpen, setNotificationOpen] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,7 +52,22 @@ const SwarmSchedulerForm = () => {
     if (validateForm()) {
       console.log("Form submitted:", formData);
       // Add logic to handle form submission, such as sending data to the server
+
+      // Show success notification
+      setNotificationOpen(true);
+
+      // Clear form data
+      setFormData({
+        description: "",
+        link: "",
+        startTime: "",
+        endTime: "",
+      });
     }
+  };
+
+  const handleNotificationClose = () => {
+    setNotificationOpen(false);
   };
 
   return (
@@ -118,6 +135,11 @@ const SwarmSchedulerForm = () => {
           Schedule Swarm
         </Button>
       </Box>
+      <Notification
+        open={notificationOpen}
+        message="Swarm scheduled successfully!"
+        onClose={handleNotificationClose}
+      />
     </Container>
   );
 };
